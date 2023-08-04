@@ -65,13 +65,16 @@
 
             <div class="shadow-md mt-6 p-6 h-40">
                 <p class="text-gray-400 text-xm">Share</p>
-                <div class="pt-2 flex">
+                <div class="pt-2 flex gap-2">
+                    <font-awesome-icon :icon="['fab', 'x-twitter']" class="text-blue-600"/>
                     <p class="text-blue-500 text-sm font-bold">Twitter</p>
                 </div>
-                <div class="pt-2 flex">
+                <div class="pt-2 flex gap-2">
+                    <font-awesome-icon :icon="['fab', 'facebook-f']" class="text-blue-900"/>
                     <p class="text-blue-900 text-sm font-bold">Facebook</p>
                 </div >
-                <div class="pt-2 flex">
+                <div class="pt-2 flex gap-2">
+                    <font-awesome-icon :icon="['fas', 'link']" class="text-red-600"/>
                     <p class="text-red-600 text-sm font-semibold tracking-wider">Copy Link</p>
                 </div>
             </div>
