@@ -3,9 +3,9 @@ import Body from '../components/Body.vue'
 </script>
 
 <template>
-    <header class="flex itmes-center justify-between p-3 shadow-lg">
+    <header class="flex itmes-center justify-between p-3 shadow-md">
     <h1 class="text-xl font-semibold">
-      <font-awesome-icon :icon="['fas', 'cat']" />Fast 
+      <font-awesome-icon :icon="['fas', 'cat']" class="text-[#0FCB18]"/>Fast 
       <span class="text-[#0FCB18]">Poll</span>
     </h1>
      
