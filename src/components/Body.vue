@@ -63,7 +63,7 @@ import { ref } from 'vue';
             <h3 class="pl-4 text-lg font-bold">Photoshop</h3>
             <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
              <div :value="progress" :max="100"
-             class="bg-orange-600 text-xs font-medium
+             class="bg-orange-600 @click.self:w-100 text-xs font-medium
              text-blue-100 text-center leading-none rounded-full w-28">{{ percentage }}%</div>
              </div>
               <p class="pt-2 text-xs text-gray-400 pl-4">{{ votes }} votes</p>

@@ -1,5 +1,6 @@
 <script setup>
 import Body from '../components/Body.vue'
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
@@ -17,9 +18,15 @@ import Body from '../components/Body.vue'
     <div class="flex items-center justify-evenly space-x-3">
       <button class="text-red-300">Public Poll</button>
       <div class="space-x-2 border-l border-gray-300 px-3">
-        
-      <button class="text-gray-700">login</button>
-      <button class="bg-blue-600 text-white p-2 rounded-md">Signup</button>
+
+        <RouterLink to="/login">
+          <button class="text-gray-700">login</button>
+        </RouterLink>
+      
+        <RouterLink to="/signin">
+          <button class="bg-blue-600 text-white p-2 rounded-md">Signup</button>
+        </RouterLink>
+      
  
       </div>
     </div>
