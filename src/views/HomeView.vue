@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 </script>
 
 <template>
-    <header class="flex itmes-center justify-between p-3 shadow-md">
+    <header class="flex items-center justify-between p-3 shadow-md">
     <h1 class="text-xl font-semibold">
       <font-awesome-icon :icon="['fas', 'cat']" class="text-[#0FCB18]"/>Fast 
       <span class="text-[#0FCB18]">Poll</span>
