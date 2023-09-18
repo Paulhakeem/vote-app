@@ -15,6 +15,17 @@ const voteDetails = ref({
  answerFour: '',
 })
 
+const createpoll = () => {
+  if(!question.value && answeOne.value && answerTwo.value && answerThree.value && answerFour.value == ''){
+   console.log('sucesseful')
+  }
+  else{
+    console.log('erro')
+  }
+}
+
+
+
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -50,98 +61,51 @@ onAuthStateChanged(auth, (user) => {
     </div>
   </header>
 
-  <div class="createpoll pt-12 justify-center text-center">
-    <div class="heading items-center m-auto text-center justify-center">
+  <div class="createpoll flex flex-wrap pt-12 mx-4 space-x-80">
+
+    <div class="rounded-full items-center justify-center mx-4 w-1/3">
+      <img src="../assets/vote.jpg" alt="" class="ml-8 ">
+    </div>
+    
+    <div class=" mx-10">
       <h3
-        class="text-center text-3xl font-semibold text-[#0FCB18] tracking-wider"
+        class="text-3xl font-bold text-[#0FCB18] tracking-wider"
       >
-        Welcome to our voting app
+      Welcome <br>back, {{ name }}!
       </h3>
-      <p class="text-center text-gray-600 text-md pt-2">
-        Let's comparet and help you build your own voting app to share with your
+      <p class="text-gray-600 text-md pt-2">
+        Let's comparet and help you build your own voting app <br>to share with your
         friends.
       </p>
+
+      <form class="my-10">
+  <div class="relative z-0 w-full mb-6 group">
+      <input type="text" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
+      <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your question</label>
+  </div>
+  <div class="relative z-0 w-full mb-6 group">
+      <input type="text" name="floating_password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
+      <label for="floating_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First Answer</label>
+  </div>
+  <div class="relative z-0 w-full mb-6 group">
+      <input type="text" name="repeat_password" id="floating_repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " required />
+      <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Second Answer</label>
+  </div>
+  <div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-6 group">
+        <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
+        <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Third Answer</label>
     </div>
-
-    <div 
-      class="question flex flex-wrap space-x-6 mt-12 justify-center gap-4 text-center"
-    >
-      <div
-        class="border-2 border-gray-600 rounded-md p-8 w-80 justify-center space-y-8"
-      >
-        <p class="text-gray-600 text-xl text-center">Your name</p>
-        <p
-          class="border-b-2 border-gray-600 outline-none focus:outline-none w-56 text-2xl font-semibold text-[#1a1716]">
-        {{ name }}
-        </p>
-     
-      </div>
-
-      <div
-        class="border-2 border-gray-600 rounded-md p-4 w-80 justify-center space-y-8"
-      >
-        <p class="text-gray-600 text-xl text-center">What is your question</p>
-        <textarea
-          type="text"
-          class="border-b-2 border-gray-600 outline-none focus:outline-none w-72"
-        ></textarea>
-      </div>
+    <div class="relative z-0 w-full mb-6 group">
+        <input type="text" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
+        <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fouth Answer</label>
     </div>
-
-    <div
-      class="flex flex-wrap space-x-6 gap-4 text-center justify-center pt-14"
-    >
-      <div class="border-2 border-gray-600 rounded-md p-4 w-80 space-y-8">
-        <p class="text-gray-600 text-xl text-center">
-          <font-awesome-icon :icon="['fas', '1']" class="text-[#0FCB18]" />:
-          Answer
-        </p>
-        <input
-          type="text"
-          class="border-b-2 border-gray-600 outline-none focus:outline-none w-72"
-        />
-      </div>
-
-      <div class="border-2 border-gray-600 rounded-md p-4 w-80 space-y-8">
-        <p class="text-gray-600 text-xl text-center">
-          <font-awesome-icon :icon="['fas', '2']" class="text-[#0FCB18]" />:
-          Answer
-        </p>
-        <input
-          type="text"
-          class="border-b-2 border-gray-600 outline-none focus:outline-none w-72"
-        />
-      </div>
+  </div>
+  
+  <button type="submit" class="text-white bg-green-500 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-500 dark:focus:ring-green-600">Create Poll</button>
+</form>
     </div>
-
-    <div class="flex flex-wrap space-x-6 gap-4 justify-center pt-14">
-      <div class="border-2 border-gray-600 rounded-md p-4 w-80 space-y-8">
-        <p class="text-gray-600 text-xl text-center">
-          <font-awesome-icon :icon="['fas', '3']" class="text-[#0FCB18]" />:
-          Answer
-        </p>
-        <input
-          type="text"
-          class="border-b-2 border-gray-600 outline-none focus:outline-none w-72"
-        />
-      </div>
-
-      <div class="border-2 border-gray-600 rounded-md p-4 w-80 space-y-8">
-        <p class="text-gray-600 text-xl text-center">
-          <font-awesome-icon :icon="['fas', '4']" class="text-[#0FCB18]" />:
-          Answer
-        </p>
-        <input
-          type="text"
-          class="border-b-2 border-gray-600 outline-none focus:outline-none w-72"
-        />
-      </div>
-    </div>
-
-    <div class="text-center justify-center mt-10 mb-10">
-      <button class="bg-[#0FCB18] w-56 rounded-md p-2 uppercase text-white">
-        Create your poll
-      </button>
-    </div>
+    
+   
   </div>
 </template>
