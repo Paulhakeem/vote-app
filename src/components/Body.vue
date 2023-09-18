@@ -45,7 +45,7 @@ import { ref } from 'vue';
 
 </script>
 <template>
-    <section class=" flex flex-wrap my-6 justify-evenly ">
+    <section class="flex flex-wrap my-6 justify-evenly ">
         <div class="vote pt-10">
          <button class="bg-blue-200 rounded-full w-24 h-6 pb-1 uppercase text-xs font-semibold p-1">
         web design
@@ -55,7 +55,7 @@ import { ref } from 'vue';
         </h1>
         <p 
         class="text-gray-400 text-xm pt-4 pb-6">Asked by 
-        <span class="font-bold">Paul</span> 3 hours ago</p>
+        <span class="font-bold">Hakeem</span> 3 hours ago</p>
 
 
         <div @click="increment"
