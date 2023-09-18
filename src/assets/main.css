@@ -3,17 +3,15 @@
 @tailwind utilities;
 
 
-@media screen and (max-width: 500px) {
-    .vote {
-       width: 96%;
-    }
-    .bar {
-        width: 94%;
+
+@media (max-width: 768px) { 
+    .image {
+        flex-wrap: wrap;
     }
     .login {
         width: 90%;
     }
-    .coding {
-        width: 50%;
+    .vote {
+        width: 90%;
     }
-}
+ }
