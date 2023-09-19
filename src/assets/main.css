@@ -7,11 +7,15 @@
 @media (max-width: 768px) { 
     .image {
         flex-wrap: wrap;
+    
     }
     .login {
         width: 90%;
     }
     .vote {
         width: 90%;
+    }
+    img {
+        width: 100%;
     }
  }

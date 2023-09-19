@@ -39,7 +39,7 @@ onAuthStateChanged(auth, (user) => {
 </script>
 <template>
   <header
-    class="header text-center flex items-center justify-between p-3 shadow-md"
+    class="header text-center flex items-center justify-between p-3 shadow-md top-0 sticky"
   >
     <h1 class="text-xl font-semibold">
       <font-awesome-icon :icon="['fas', 'cat']" class="text-[#0FCB18]" />Paul
@@ -52,25 +52,24 @@ onAuthStateChanged(auth, (user) => {
     </button>
 
     <div class="flex items-center justify-evenly space-x-3">
-      <button class="text-red-300">Public Poll</button>
-      <div class=" flex gap-4 border-l border-gray-300 px-3">
-        <p class="pt-4">{{ name }}</p>
+      <div class=" flex gap-4 px-3">
+        <p class="pt-4 text-gray-500">{{ name }}</p>
         <img :src="photoURL" alt="" 
-        class="w-14 h-14 rounded-full" />
+        class="w-12 h-12 rounded-full" />
       </div>
     </div>
   </header>
 
   
-
-  <!-- create your vote -->
-  <div class="image flex flex-wrap pt-12  items-center justify-between mx-14 space-y-6">
-    <div class="items-center justify-center w-1/3">
-      <RouterLink to="/">
-        <button class="bg-green-500 p-2 rounded-md text-white font-medium tracking-wide">
+  <RouterLink to="/" class="mx-4">
+        <button class="bg-green-500 p-2 rounded-md text-white font-medium tracking-wide my-4 fixed">
           <font-awesome-icon :icon="['fas', 'arrow-left']" />
           Go Back</button> 
       </RouterLink>
+
+  <!-- create your vote -->
+  <div class="image flex flex-wrap pt-2  items-center justify-around mx-8 space-y-6">
+    <div class="items-center justify-center w-1/3">
       <img src="../assets/vote.jpg" alt="" class="ml-8 w-full">
   </div> 
     
@@ -86,24 +85,24 @@ onAuthStateChanged(auth, (user) => {
 
       <form class="my-10">
   <div class="relative z-0 w-full mb-6 group">
-      <input type="text" name="floating_email" id="floating_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
+      <input type="text" name="floating_email" id="floating_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
       <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your question</label>
   </div>
   <div class="relative z-0 w-full mb-6 group">
-      <input type="text" name="floating_password" id="floating_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
+      <input type="text" name="floating_password" id="floating_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
       <label for="floating_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First Answer</label>
   </div>
   <div class="relative z-0 w-full mb-6 group">
-      <input type="text" name="repeat_password" id="floating_repeat_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " required />
+      <input type="text" name="repeat_password" id="floating_repeat_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " required />
       <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Second Answer</label>
   </div>
   <div class="grid md:grid-cols-2 md:gap-6">
     <div class="relative z-0 w-full mb-6 group">
-        <input type="text" name="floating_first_name" id="floating_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
+        <input type="text" name="floating_first_name" id="floating_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
         <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Third Answer</label>
     </div>
     <div class="relative z-0 w-full mb-6 group">
-        <input type="text" name="floating_last_name" id="floating_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
+        <input type="text" name="floating_last_name" id="floating_text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-green-500 peer" placeholder=" " required />
         <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fouth Answer</label>
     </div>
   </div>

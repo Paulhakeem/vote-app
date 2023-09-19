@@ -105,7 +105,7 @@ import { ref } from 'vue';
         </div>
         
 
-        <div class="mt-44">
+        <div class="my-12">
             <button class="bg-green-500 p-2 rounded-md text-white uppercase w-56">
                 submit your vote
             </button>
