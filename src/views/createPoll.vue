@@ -46,14 +46,15 @@ onAuthStateChanged(auth, (user) => {
       <span class="text-[#0FCB18]">Poll</span>
     </h1>
 
-    <button class="bg-[#0FCB18] p-2 rounded-md text-white">
-      Create Poll
-      <font-awesome-icon :icon="['fas', 'plus']" class="text-white" />
+    <button
+    class="mx-4">
+      <font-awesome-icon :icon="['fas', 'check-to-slot']" class="text-[#0FCB18] fa-1x" />
+      <font-awesome-icon :icon="['fas', 'plus']" class="text-[#0FCB18] text-3xl" />
     </button>
 
     <div class="flex items-center justify-evenly space-x-3">
       <div class=" flex gap-4 px-3">
-        <p class="pt-4 text-gray-500">{{ name }}</p>
+        <p class="my-3 text-gray-500">{{ name }}</p>
         <img :src="photoURL" alt="" 
         class="w-12 h-12 rounded-full" />
       </div>
@@ -68,14 +69,14 @@ onAuthStateChanged(auth, (user) => {
       </RouterLink>
 
   <!-- create your vote -->
-  <div class="image flex flex-wrap pt-2  items-center justify-around mx-8 space-y-6">
+  <div class="image flex flex-wrap pt-2  items-center justify-around mx-8 space-y-6 select-none">
     <div class="items-center justify-center w-1/3">
       <img src="../assets/vote.jpg" alt="" class="ml-8 w-full">
   </div> 
     
     <div class="">
-      <h3
-        class="text-3xl font-bold text-[#0FCB18] tracking-wider"
+      <h3 
+        class=" profile text-3xl font-bold text-[#0FCB18] tracking-wider"
       >
       Welcome <br>back, {{ name }}!
       </h3>

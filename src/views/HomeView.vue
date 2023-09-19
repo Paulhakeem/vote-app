@@ -17,7 +17,7 @@ import { RouterLink } from 'vue-router';
       
       </RouterLink>
     
-    <div class="flex items-center justify-evenly space-x-3">
+    <div class="flex items-center justify-evenly space-x-3 text-center">
       <div class="space-x-2 px-3">
 
         <RouterLink to="/login">
