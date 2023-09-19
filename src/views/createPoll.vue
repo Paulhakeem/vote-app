@@ -64,8 +64,8 @@ onAuthStateChanged(auth, (user) => {
   
 
   <!-- create your vote -->
-  <div class="image flex flex-wrap pt-12 mx-4 space-x-80">
-    <div class="rounded-full items-center justify-center mx-4 w-1/3">
+  <div class="image flex flex-wrap pt-12  items-center justify-between mx-14 space-y-6">
+    <div class="items-center justify-center w-1/3">
       <RouterLink to="/">
         <button class="bg-green-500 p-2 rounded-md text-white font-medium tracking-wide">
           <font-awesome-icon :icon="['fas', 'arrow-left']" />
@@ -80,9 +80,8 @@ onAuthStateChanged(auth, (user) => {
       >
       Welcome <br>back, {{ name }}!
       </h3>
-      <p class="text-gray-600 text-md pt-2">
-        Let's comparet and help you build your own voting app <br>to share with your
-        friends.
+      <p class="text-gray-500 text-md pt-2">
+        Fill the form in order to create your own voting app and share <br> with your friends and family
       </p>
 
       <form class="my-10">
