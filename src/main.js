@@ -1,5 +1,5 @@
 import './assets/main.css'
-import { auth } from './firebase'
+
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -14,16 +14,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 
 library.add(fab, fas, far)
 
-
-
-router.beforeEach((to, from, next) => {
-    const isAuthenticated = auth.currentUser
-    const isAuthRequired = to.matched.some(record => 
-        record.meta.requiresAuth )
-
-        if (!isAuthenticated  && isAuthRequired) next({ name: 'login'})
-        else next()
-})
 
 const app = createApp(App)
 

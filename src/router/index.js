@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { auth } from './firebase'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,10 +23,22 @@ const router = createRouter({
     {
       path: '/createpoll',
       name: 'createpoll',
-      component: () => import('../views/createPoll.vue')
+      component: () => import('../views/createPoll.vue'),
+      meta: {requiresAuth: true}
     },
     
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = auth.currentUser
+  const isAuthRequired = to.matched.some(record => 
+      record.meta.requiresAuth )
+
+      if (!isAuthenticated  && isAuthRequired) next({ name: 'login'})
+      else next()
+})
+
+
 
 export default router
