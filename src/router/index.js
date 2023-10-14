@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import { auth } from './firebase'
+import { auth } from '../firebase'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +19,11 @@ const router = createRouter({
       path: '/signin',
       name: 'signin',
       component: () => import('../views/SignIn.vue')
+    },
+    {
+      path: '/view',
+      name: 'ViewPoll',
+      component: () => import('../views/ViewPoll.vue')
     },
     {
       path: '/createpoll',
