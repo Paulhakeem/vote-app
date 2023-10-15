@@ -2,31 +2,15 @@
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useVoteStore } from '../store/vote'
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+
+const vote = useVoteStore()
 
 const photoURL = ref(null);
 const name = ref(null);
 
-const voteDetails = ref({
-  question: "",
-  answeOne: "",
-  answerTwo: "",
-  answerThree: "",
-  answerFour: "",
-});
-
-const createpoll = () => {
-  if (
-    !question.value &&
-    answeOne.value &&
-    answerTwo.value &&
-    answerThree.value &&
-    answerFour.value == ""
-  ) {
-    console.log("sucesseful");
-  } else {
-    console.log("erro");
-  }
-};
 
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
@@ -37,6 +21,10 @@ onAuthStateChanged(auth, (user) => {
     photoURL.value = null;
     name.value = null;
   }
+})
+
+toast("Login succesfull!", {
+  autoClosed: 1000,
 });
 </script>
 <template>
@@ -93,9 +81,10 @@ onAuthStateChanged(auth, (user) => {
         with your friends and family
       </p>
 
-      <form class="my-10">
+      <form @submit.prevent="vote.createQuestion" class="my-10">
         <div class="relative z-0 w-full mb-6 group">
           <input
+          v-model="vote.question"
             type="text"
             name="floating_email"
             id="floating_text"
@@ -111,6 +100,7 @@ onAuthStateChanged(auth, (user) => {
         </div>
         <div class="relative z-0 w-full mb-6 group">
           <input
+          v-model="vote.firstAnswer"
             type="text"
             name="floating_password"
             id="floating_text"
@@ -126,6 +116,7 @@ onAuthStateChanged(auth, (user) => {
         </div>
         <div class="relative z-0 w-full mb-6 group">
           <input
+            v-model="vote.secondAnswer"
             type="text"
             name="repeat_password"
             id="floating_repeat_text"
@@ -142,6 +133,7 @@ onAuthStateChanged(auth, (user) => {
         <div class="grid md:grid-cols-2 md:gap-6">
           <div class="relative z-0 w-full mb-6 group">
             <input
+              v-model="vote.thirdAnswer"
               type="text"
               name="floating_first_name"
               id="floating_text"
@@ -157,6 +149,7 @@ onAuthStateChanged(auth, (user) => {
           </div>
           <div class="relative z-0 w-full mb-6 group">
             <input
+            v-model="vote.fourthAnswer"
               type="text"
               name="floating_last_name"
               id="floating_text"
@@ -171,14 +164,13 @@ onAuthStateChanged(auth, (user) => {
             >
           </div>
         </div>
-    <RouterLink to="/view">
         <button
+          @click="vote.createQuestion"
           type="submit"
           class="text-white bg-green-500 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-500 dark:focus:ring-green-600"
         >
           Create Poll
-        </button>
-       </RouterLink>
+      </button>
       </form>
     </div>
   </div>

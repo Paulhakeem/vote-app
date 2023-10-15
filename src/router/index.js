@@ -22,7 +22,7 @@ const router = createRouter({
     },
     {
       path: '/view',
-      name: 'ViewPoll',
+      name: 'Viewpoll',
       component: () => import('../views/ViewPoll.vue')
     },
     {

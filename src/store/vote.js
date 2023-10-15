@@ -1,6 +1,9 @@
-import {defineStore} from 'pinia'
-import {ref} from 'vue'
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import {RouterLink, useRouter} from 'vue-router'
 // import {db} from '../firebase.js'
+
+const router = useRouter()
 
 export const useVoteStore = defineStore('votes', () => {
     const question = ref('')

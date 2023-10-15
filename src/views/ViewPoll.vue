@@ -1,6 +1,15 @@
 <script setup>
 import { ref } from 'vue';
+import { useVoteStore } from '../store/vote';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
+const vote = useVoteStore()
+
+
+toast("Your vote is succesfull created your vote poll!", {
+  autoClosed: 1000,
+});
 
     const percentage = ref(0);
     const votes = ref(0);
@@ -45,13 +54,15 @@ import { ref } from 'vue';
 
 </script>
 <template>
-    <section class="flex flex-wrap my-6 justify-evenly ">
+    <section 
+    v-for="quiz in vote.newQuestion"
+    class="flex flex-wrap my-6 justify-evenly ">
         <div class="vote pt-10">
          <button class="bg-blue-200 rounded-full w-24 h-6 pb-1 uppercase text-xs font-semibold p-1">
         web design
         </button>
         <h1 class="text-3xl text-gray-800 font-bold pt-2">
-            What design tool do you use the <br> most?
+            {{ quiz.question }}
         </h1>
         <p 
         class="text-gray-400 text-xm pt-4 pb-6">Asked by 
@@ -60,7 +71,7 @@ import { ref } from 'vue';
 
         <div @click="increment"
             class="shadow-md p-4 w-full mb-3 cursor-pointer rounded-md">
-            <h3 class="pl-4 text-lg font-bold">Photoshop</h3>
+            <h3 class="pl-4 text-lg font-bold">{{ quiz.firstAnswer }}</h3>
             <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
              <div :value="progress" :max="100"
              class="bg-orange-600 @click.self:w-100 text-xs font-medium
@@ -71,7 +82,7 @@ import { ref } from 'vue';
 
         <div @click="increment1"
         class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
-            <h3 class="pl-4 text-lg font-bold">Sketch</h3>
+            <h3 class="pl-4 text-lg font-bold">{{ quiz.secondAnswer }}</h3>
             <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
              <div :value="progress1" :max="100"
               class="bg-green-500 text-xs font-medium
@@ -82,7 +93,7 @@ import { ref } from 'vue';
 
         <div @click="increment2"
         class="shadow-md p-4 w-full mb-3 cursor-pointer rounded-md">
-            <h3 class="pl-4 text-lg font-bold">Adobe XD</h3>
+            <h3 class="pl-4 text-lg font-bold">{{ quiz.thirdAnswer }}</h3>
             <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
              <div :value="progress2" :max="100"
              class="bg-orange-300 text-xs font-medium
@@ -93,7 +104,7 @@ import { ref } from 'vue';
 
         <div @click="increment3"
         class="shadow-md p-4 w-full mb-3 cursor-pointer rounded-md border-2 border-blue-600">
-            <h3 class="pl-4 text-lg font-bold">Figma</h3>
+            <h3 class="pl-4 text-lg font-bold">{{ quiz.fourthAnswer }}</h3>
             <div class=" bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
              <div :value="progress3" :max="100"
               class="bg-blue-600 text-xs font-medium
