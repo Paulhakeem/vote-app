@@ -8,13 +8,43 @@ import "vue3-toastify/dist/index.css";
 const vote = useVoteStore()
 const total = useTotalVotes()
 
+const firstContentProgress = ref(0)
+const secondContentProgress = ref(0)
+const thirdContentProgress = ref(0)
+const fourthContentProgress = ref(0)
 
+
+const increaseFirstPercentage = () => {
+      if (firstContentProgress.value <= 95) {
+          firstContentProgress.value += 5
+      }
+    }
+
+
+    const increaseSecondPercentage = () => {
+      if (secondContentProgress.value <= 95) {
+          secondContentProgress.value += 5
+      }
+    }
+
+    const increaseThirdPercentage = () => {
+      if (thirdContentProgress.value <= 95) {
+          thirdContentProgress.value += 5
+      }
+    }
+    const increaseFourthPercentage = () => {
+      if (fourthContentProgress.value <= 95) {
+          fourthContentProgress.value += 5
+      }
+    }
 toast("Your vote is succesfull created your vote poll!", {
   autoClosed: 1000,
 });
 
    
 </script>
+
+
 <template>
     <section 
     v-for="quiz in vote.newQuestion"
@@ -31,49 +61,72 @@ toast("Your vote is succesfull created your vote poll!", {
         <span class="font-bold">Hakeem</span> 3 hours ago</p>
 
 
-        <div @click="total.firstTotalVotes"
-            class="shadow-md p-4 w-full mb-3 cursor-pointer rounded-md">
+<!-- example -->
+
+       <div @click="total.firstTotalVotes">
+        <div @click="increaseFirstPercentage"
+        class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
             <h3 class="pl-4 text-lg font-bold">{{ quiz.firstAnswer }}</h3>
             <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
-             <div
-             class="bg-orange-600 @click.self:w-100 text-xs font-medium
-             text-blue-100 text-center leading-none rounded-full w-28">%</div>
+             <div :style="{ width: firstContentProgress + '%' }"
+              class="bg-green-500 text-xs font-medium
+             text-blue-100 text-center leading-none rounded-full">
+             {{ firstContentProgress }}%
+            </div>
              </div>
               <p class="pt-2 text-xs text-gray-400 pl-4">{{ total.firstVote }} votes</p>
         </div>
+       </div>
 
-        <div @click="total.secondTotalVotes"
+       
+
+        <div @click="total.secondTotalVotes">
+            <div @click="increaseSecondPercentage"
         class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
             <h3 class="pl-4 text-lg font-bold">{{ quiz.secondAnswer }}</h3>
             <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
-             <div
-              class="bg-green-500 text-xs font-medium
-             text-blue-100 text-center leading-none rounded-full w-52">%</div>
+             <div :style="{ width: secondContentProgress + '%' }"
+              class="bg-blue-500 text-xs font-medium
+             text-blue-100 text-center leading-none rounded-full">
+             {{ secondContentProgress }}%
+            </div>
              </div>
               <p class="pt-2 text-xs text-gray-400 pl-4">{{ total.secondVote }} votes</p>
         </div>
-
-        <div @click="total.thirdTotalVotes"
-        class="shadow-md p-4 w-full mb-3 cursor-pointer rounded-md">
+        </div>
+        
+        
+        <div @click="total.thirdTotalVotes">
+            <div @click="increaseThirdPercentage"
+        class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
             <h3 class="pl-4 text-lg font-bold">{{ quiz.thirdAnswer }}</h3>
-            <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
-             <div 
-             class="bg-orange-300 text-xs font-medium
-             text-blue-100 text-center leading-none rounded-full w-12">%</div>
+            <div  class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+             <div :style="{ width: thirdContentProgress + '%' }"
+              class="bg-orange-500 text-xs font-medium
+             text-blue-100 text-center leading-none rounded-full">
+             {{ thirdContentProgress }}%
+            </div>
              </div>
               <p class="pt-2 text-xs text-gray-400 pl-4">{{ total.thirdVote }} votes</p>
         </div>
-
-        <div @click="total.fourthTotalVotes"
-        class="shadow-md p-4 w-full mb-3 cursor-pointer rounded-md border-2 border-blue-600">
+        </div>
+        
+        
+        <div @click="total.fourthTotalVotes">
+         <div @click="increaseFourthPercentage"
+        class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
             <h3 class="pl-4 text-lg font-bold">{{ quiz.fourthAnswer }}</h3>
-            <div class=" bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
-             <div
-              class="bg-blue-600 text-xs font-medium
-             text-blue-100 text-center leading-none rounded-full w-40"> %</div>
+            <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+             <div :style="{ width: fourthContentProgress + '%' }"
+              class="bg-purple-500 text-xs font-medium
+             text-blue-100 text-center leading-none rounded-full">
+             {{ fourthContentProgress }}%
+            </div>
              </div>
               <p class="pt-2 text-xs text-gray-400 pl-4">{{ total.fourthVote }} votes</p>
         </div>
+        </div>
+        
 
         </div>
         
@@ -110,5 +163,8 @@ toast("Your vote is succesfull created your vote poll!", {
                 Report Abuse
             </button>
         </div>
+
+        
   </section>
 </template>
+
