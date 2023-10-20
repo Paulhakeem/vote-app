@@ -9,6 +9,7 @@ export const useTotalVotes = defineStore('total', () => {
     const fourthVote = ref(0)
 
   
+ 
    const firstTotalVotes = () => {
       firstVote.value ++
    }
@@ -25,13 +26,9 @@ export const useTotalVotes = defineStore('total', () => {
     fourthVote.value ++
  }
   
-const finalTotal = ref( firstTotalVotes())
-
+ 
 //  total of all votes
-    const totalVotes = () => {
-    console.log(finalTotal);
-    }
-   
+  
 
     return {
         firstVote, 
@@ -42,7 +39,5 @@ const finalTotal = ref( firstTotalVotes())
          secondTotalVotes, 
          thirdTotalVotes, 
          fourthTotalVotes,
-         totalVotes,
-         finalTotal
         }
 })

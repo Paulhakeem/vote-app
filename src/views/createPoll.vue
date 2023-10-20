@@ -2,15 +2,14 @@
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useVoteStore } from '../store/vote'
+import { useVoteStore } from "../store/vote";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 
-const vote = useVoteStore()
+const vote = useVoteStore();
 
 const photoURL = ref(null);
 const name = ref(null);
-
 
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
@@ -21,7 +20,7 @@ onAuthStateChanged(auth, (user) => {
     photoURL.value = null;
     name.value = null;
   }
-})
+});
 
 toast("Login succesfull!", {
   autoClosed: 1000,
@@ -57,7 +56,7 @@ toast("Login succesfull!", {
 
   <RouterLink to="/" class="mx-4">
     <button
-      class="bg-green-500 p-2 rounded-md text-white font-medium tracking-wide my-4 fixed"
+      class="text-green-500 shadow-lg p-2 rounded-md font-medium tracking-wide my-4 fixed"
     >
       <font-awesome-icon :icon="['fas', 'arrow-left']" />
       Go Back
@@ -73,6 +72,15 @@ toast("Login succesfull!", {
     </div>
 
     <div class="">
+      <RouterLink to="/view">
+        <button
+          class="float-right p-2 text-green-500 shadow-lg focus:ring-4 focus:outline-none font-medium rounded-lg text-sm sm:w-auto text-center dark:bg-green-600 dark:hover:bg-green-500 dark:focus:ring-green-600"
+        >
+          View Poll
+          <font-awesome-icon :icon="['fas', 'forward']" />
+        </button>
+      </RouterLink>
+
       <h3 class="profile text-3xl font-bold text-[#0FCB18] tracking-wider">
         Welcome <br />back, {{ name }}!
       </h3>
@@ -82,9 +90,18 @@ toast("Login succesfull!", {
       </p>
 
       <form @submit.prevent="vote.createQuestion" class="my-10">
+        <div class="mb-6 flex gap-4">
+          <label for="type" class="text-gray-500 text-lg pt-2">Type:</label>
+          <input
+            v-model="vote.type"
+            type="text"
+            class="outline-none w-48 border-none rounded-full shadow-md p-1 pl-3 caret-green-500 text-gray-900"
+            placeholder="Type of question"
+          />
+        </div>
         <div class="relative z-0 w-full mb-6 group">
           <input
-          v-model="vote.question"
+            v-model="vote.question"
             type="text"
             name="floating_email"
             id="floating_text"
@@ -100,7 +117,7 @@ toast("Login succesfull!", {
         </div>
         <div class="relative z-0 w-full mb-6 group">
           <input
-          v-model="vote.firstAnswer"
+            v-model="vote.firstAnswer"
             type="text"
             name="floating_password"
             id="floating_text"
@@ -149,7 +166,7 @@ toast("Login succesfull!", {
           </div>
           <div class="relative z-0 w-full mb-6 group">
             <input
-            v-model="vote.fourthAnswer"
+              v-model="vote.fourthAnswer"
               type="text"
               name="floating_last_name"
               id="floating_text"
@@ -164,13 +181,24 @@ toast("Login succesfull!", {
             >
           </div>
         </div>
-        <button
-          @click="vote.createQuestion"
-          type="submit"
-          class="text-white bg-green-500 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-500 dark:focus:ring-green-600"
-        >
-          Create Poll
-      </button>
+        <div class="flex gap-4">
+          <button
+            @click="vote.createQuestion"
+            type="submit"
+            class="text-white bg-green-500 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-500 dark:focus:ring-green-600"
+          >
+            Create Poll
+          </button>
+
+          <button
+            v-if="vote.newQuestion.length < 0"
+            @click="vote.createQuestion"
+            type="submit"
+            class="text-white bg-green-500 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-500 dark:focus:ring-green-600"
+          >
+            <font-awesome-icon :icon="['fas', 'circle-check']" />
+          </button>
+        </div>
       </form>
     </div>
   </div>
