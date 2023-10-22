@@ -23,7 +23,8 @@ const router = createRouter({
     {
       path: '/view',
       name: 'Viewpoll',
-      component: () => import('../views/ViewPoll.vue')
+      component: () => import('../views/ViewPoll.vue'),
+      meta: {requiresAuth: true}
     },
     {
       path: '/createpoll',

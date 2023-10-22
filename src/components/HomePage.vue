@@ -1,11 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useVoteStore } from '../store/vote'
-import {useTotalVotes} from '../store/totalVotes'
 
-
-const vote = useVoteStore()
-const total = useTotalVotes()
 
 const firstContentProgress = ref(0)
 const secondContentProgress = ref(0)
@@ -13,6 +8,7 @@ const thirdContentProgress = ref(0)
 const fourthContentProgress = ref(0)
 
 
+// progress bar
 const increaseFirstPercentage = () => {
       if (firstContentProgress.value <= 95) {
           firstContentProgress.value += 5
@@ -37,19 +33,54 @@ const increaseFirstPercentage = () => {
       }
     }
 
+
+    // votes
+  const firstVote = ref(0);
+  const secondVote = ref(0);
+  const thirdVote = ref(0);
+  const fourthVote = ref(0);
+
+
+  const firstTotalVotes = () => {
+    firstVote.value++;
+  };
+
+  const secondTotalVotes = () => {
+    secondVote.value++;
+  };
+
+  const thirdTotalVotes = () => {
+    thirdVote.value++;
+  };
+
+  const fourthTotalVotes = () => {
+    fourthVote.value++;
+  }
+
+  const SumTotal = [firstVote, secondVote, thirdVote, fourthVote]
+ 
+  const addVotes = () => {
+    let sum = 0
+    for(const total in SumTotal ) {
+      sum += total
+    }
+    return sum
+
+  }
+  const finalTotal = addVotes(SumTotal)
+
 </script>
 
 
 <template>
-    <section 
-    v-for="quiz in vote.newQuestion"
+    <section
     class="flex flex-wrap my-6 justify-evenly ">
         <div class="vote pt-10">
          <button class="bg-blue-200 rounded-full w-24 h-6 pb-1 uppercase text-xs font-semibold p-1">
-        web design
+        Programming
         </button>
         <h1 class="text-3xl text-gray-800 font-bold pt-2">
-            {{ quiz.question }}
+            Which is your favourite programming language?
         </h1>
         <p 
         class="text-gray-400 text-xm pt-4 pb-6">Asked by 
@@ -58,67 +89,67 @@ const increaseFirstPercentage = () => {
 
 <!-- example -->
 
-       <div @click="total.firstTotalVotes">
+       <div @click="firstTotalVotes">
         <div @click="increaseFirstPercentage"
-        class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
-            <h3 class="pl-4 text-lg font-bold">{{ quiz.firstAnswer }}</h3>
-            <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+        class="shadow-md p-6 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
+            <h3 class="pl-4 text-lg font-bold">JavaScript</h3>
+            <div class="bar w-full bg-gray-200 rounded-full mt-2 ml-4">
              <div :style="{ width: firstContentProgress + '%' }"
               class="bg-green-500 text-xs font-medium
              text-blue-100 text-center leading-none rounded-full">
              {{ firstContentProgress }}%
             </div>
              </div>
-              <p class="pt-2 text-xs text-gray-400 pl-4">{{ total.firstVote }} votes</p>
+              <p class="pt-2 text-xs text-gray-400 pl-4">{{ firstVote }} votes</p>
         </div>
        </div>
 
        
 
-        <div @click="total.secondTotalVotes">
+        <div @click="secondTotalVotes">
             <div @click="increaseSecondPercentage"
-        class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
-            <h3 class="pl-4 text-lg font-bold">{{ quiz.secondAnswer }}</h3>
-            <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+        class="shadow-md p-6 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
+            <h3 class="pl-4 text-lg font-bold">Python</h3>
+            <div class="bar w-full bg-gray-200 rounded-full mt-2 ml-4">
              <div :style="{ width: secondContentProgress + '%' }"
               class="bg-blue-500 text-xs font-medium
              text-blue-100 text-center leading-none rounded-full">
              {{ secondContentProgress }}%
             </div>
              </div>
-              <p class="pt-2 text-xs text-gray-400 pl-4">{{ total.secondVote }} votes</p>
+              <p class="pt-2 text-xs text-gray-400 pl-4">{{ secondVote }} votes</p>
         </div>
         </div>
         
         
-        <div @click="total.thirdTotalVotes">
+        <div @click="thirdTotalVotes">
             <div @click="increaseThirdPercentage"
-        class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
-            <h3 class="pl-4 text-lg font-bold">{{ quiz.thirdAnswer }}</h3>
-            <div  class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+        class="shadow-md p-6 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
+            <h3 class="pl-4 text-lg font-bold">Java</h3>
+            <div  class="bar w-full bg-gray-200 rounded-full mt-2 ml-4">
              <div :style="{ width: thirdContentProgress + '%' }"
               class="bg-orange-500 text-xs font-medium
              text-blue-100 text-center leading-none rounded-full">
              {{ thirdContentProgress }}%
             </div>
              </div>
-              <p class="pt-2 text-xs text-gray-400 pl-4">{{ total.thirdVote }} votes</p>
+              <p class="pt-2 text-xs text-gray-400 pl-4">{{ thirdVote }} votes</p>
         </div>
         </div>
         
         
-        <div @click="total.fourthTotalVotes">
+        <div @click="fourthTotalVotes">
          <div @click="increaseFourthPercentage"
-        class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
-            <h3 class="pl-4 text-lg font-bold">{{ quiz.fourthAnswer }}</h3>
-            <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+        class="shadow-md p-6 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer">
+            <h3 class="pl-4 text-lg font-bold">PHP</h3>
+            <div class="bar w-full bg-gray-200 rounded-full mt-2 ml-4">
              <div :style="{ width: fourthContentProgress + '%' }"
               class="bg-purple-500 text-xs font-medium
              text-blue-100 text-center leading-none rounded-full">
              {{ fourthContentProgress }}%
             </div>
              </div>
-              <p class="pt-2 text-xs text-gray-400 pl-4">{{ total.fourthVote }} votes</p>
+              <p class="pt-2 text-xs text-gray-400 pl-4">{{ fourthVote }} votes</p>
         </div>
         </div>
         
@@ -127,15 +158,14 @@ const increaseFirstPercentage = () => {
         
 
         <div class="my-12">
-            <button 
-            @click="total.totalVotes"
+            <button
             class="bg-green-500 p-2 rounded-md text-white uppercase w-56">
                 submit your vote
             </button>
 
             <div class="shadow-md mt-6 p-6">
                 <p class="text-gray-400 text-xm">Total Votes</p>
-                <p class="text-xl font-black">{{ total.total}}</p>
+                <p class="text-xl font-black">{{ finalTotal }}</p>
             </div>
 
 

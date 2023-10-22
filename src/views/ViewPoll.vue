@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, toDisplayString } from "vue";
 import { useVoteStore } from "../store/vote";
 import { useTotalVotes } from "../store/totalVotes";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -63,7 +63,7 @@ toast("Your vote is succesfull created your vote poll!", {
   >
     <div class="vote pt-10">
       <button
-        class="bg-blue-200 rounded-full w-24 h-6 pb-1 uppercase text-xs font-semibold p-1"
+        class="bg-blue-200 rounded-full w-auto h-6 pb-1 uppercase text-xs font-semibold p-1"
       >
         {{ quiz.type }}
       </button>
@@ -71,7 +71,7 @@ toast("Your vote is succesfull created your vote poll!", {
         {{ quiz.question }}
       </h1>
       <p class="text-gray-400 text-xm pt-4 pb-6">
-        Asked by <span class="font-bold">{{ name }}</span> 3 hours ago
+        Asked by <span class="font-bold">{{ name }}</span> {{ total.today.toLocaleString() }}
       </p>
 
       <!-- example -->
@@ -79,10 +79,10 @@ toast("Your vote is succesfull created your vote poll!", {
       <div @click="total.firstTotalVotes">
         <div
           @click="increaseFirstPercentage"
-          class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer"
+          class="shadow-md p-6 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer"
         >
           <h3 class="pl-4 text-lg font-bold">{{ quiz.firstAnswer }}</h3>
-          <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+          <div class="bar w-full bg-gray-200 rounded-full mt-2 ml-4">
             <div
               :style="{ width: firstContentProgress + '%' }"
               class="bg-green-500 text-xs font-medium text-blue-100 text-center leading-none rounded-full"
@@ -99,10 +99,10 @@ toast("Your vote is succesfull created your vote poll!", {
       <div @click="total.secondTotalVotes">
         <div
           @click="increaseSecondPercentage"
-          class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer"
+          class="shadow-md p-6 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer"
         >
           <h3 class="pl-4 text-lg font-bold">{{ quiz.secondAnswer }}</h3>
-          <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+          <div class="bar w-full bg-gray-200 rounded-full mt-2 ml-4">
             <div
               :style="{ width: secondContentProgress + '%' }"
               class="bg-blue-500 text-xs font-medium text-blue-100 text-center leading-none rounded-full"
@@ -119,10 +119,10 @@ toast("Your vote is succesfull created your vote poll!", {
       <div @click="total.thirdTotalVotes">
         <div
           @click="increaseThirdPercentage"
-          class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer"
+          class="shadow-md p-6 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer"
         >
           <h3 class="pl-4 text-lg font-bold">{{ quiz.thirdAnswer }}</h3>
-          <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+          <div class="bar w-full bg-gray-200 rounded-full mt-2 ml-4">
             <div
               :style="{ width: thirdContentProgress + '%' }"
               class="bg-orange-500 text-xs font-medium text-blue-100 text-center leading-none rounded-full"
@@ -139,10 +139,10 @@ toast("Your vote is succesfull created your vote poll!", {
       <div @click="total.fourthTotalVotes">
         <div
           @click="increaseFourthPercentage"
-          class="shadow-md p-4 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer"
+          class="shadow-md p-6 w-full mb-3 border-2 border-green-500 rounded-md cursor-pointer"
         >
           <h3 class="pl-4 text-lg font-bold">{{ quiz.fourthAnswer }}</h3>
-          <div class="bar w-96 bg-gray-200 rounded-full mt-2 ml-4">
+          <div class="bar w-full bg-gray-200 rounded-full mt-2 ml-4">
             <div
               :style="{ width: fourthContentProgress + '%' }"
               class="bg-purple-500 text-xs font-medium text-blue-100 text-center leading-none rounded-full"
@@ -167,7 +167,7 @@ toast("Your vote is succesfull created your vote poll!", {
 
       <div class="shadow-md mt-6 p-6">
         <p class="text-gray-400 text-xm">Total Votes</p>
-        <p class="text-xl font-black">{{ total.total }}</p>
+        <p class="text-xl font-black">{{  }}</p>
       </div>
 
       <div class="shadow-md mt-6 p-6 h-40">
